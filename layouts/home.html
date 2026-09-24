@@ -1,0 +1,180 @@
+{{ define "main" }}
+
+<section class="hero wrap">
+  <div class="hero__grid">
+    <div>
+      <p class="eyebrow">{{ site.Params.tagline }}</p>
+      <h1>You wear a fifth of what you own.</h1>
+      <p class="hero__lead">
+        The rest is behind a coat. DROBE puts everything you own on a replica of
+        your own body, so you can see all of it and decide before the morning
+        starts.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="{{ "use-cases/" | relURL }}">
+          See it on a real day {{ partial "icon.html" (dict "name" "arrow" "class" "icon icon--sm") }}
+        </a>
+        <a class="btn btn--ghost" href="{{ "product/" | relURL }}">What exists today</a>
+      </div>
+    </div>
+    <div class="hero__media">
+      {{ partial "avatar.html" . }}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="problem">
+  <div class="wrap">
+    <p class="eyebrow">You have probably done this</p>
+    <h2>Most of a wardrobe is invisible from the front.</h2>
+    <div class="prose">
+      <p>
+        A wardrobe is a stack of fabric facing sideways. You reach past thirty
+        things to the same five, and the rest may as well not be there. None of
+        this is a fashion problem, and most people have never thought of it as
+        solvable.
+      </p>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:2rem">
+      <div class="card">
+        <h3 class="card__title">The thing behind the coat</h3>
+        <p>You own something you like. It has been behind the winter coat since March, so it has not existed since March.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Two greys, one wrong</h3>
+        <p>One of them works with the blue trousers. You will find out which after both are on.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Dressed for yesterday</h3>
+        <p>It is four degrees colder than when you last checked, and you checked at the door.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Bought it twice</h3>
+        <p>The second black jumper, because the first one was behind the coat. See above.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Three sizes, keep one</h3>
+        <p>Ordering several and returning most is now normal behaviour online, and it is nobody's idea of a good time.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">The bag by the door</h3>
+        <p>Perfectly good clothes someone else would want, waiting on an hour of photographing you are never going to spend.</p>
+      </div>
+    </div>
+
+    {{ partial "band.html" (dict
+        "src" "photo-walk-in-wardrobe.webp"
+        "alt" "A wardrobe in daylight with clothing arranged by colour on open rails and shelving") }}
+  </div>
+</section>
+
+<section class="section wrap">
+  <p class="eyebrow">What it actually does</p>
+  <h2>Your clothes, on your own body, before you get dressed.</h2>
+  <div class="prose">
+    <p>
+      Photograph each item once. It lives in a grid from then on, not on a rail.
+    </p>
+    <p>
+      Your body is a replica built from your own measurements, so a garment falls
+      where it will actually fall - not where it falls on a model.
+    </p>
+    <p>
+      Weather and your calendar sit on the same screen, because both are settled
+      before the wardrobe is opened.
+    </p>
+  </div>
+
+  <figure class="shot">
+    <img src="{{ "screenshots/home-desktop.png" | relURL }}"
+         alt="The DROBE home screen: an avatar beside cards for today's weather, the next event, the closet and the stylist"
+         width="1280" height="900" loading="lazy" decoding="async">
+    <figcaption>The home screen. Weather and the next event sit beside the avatar, because both are decided before the wardrobe is opened.</figcaption>
+  </figure>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <p class="eyebrow">The numbers</p>
+    <h2>It is not just you.</h2>
+    <div class="grid grid--4" style="margin-top:1.5rem">
+      <div class="card">
+        <h3 class="card__title">About a fifth</h3>
+        <p>The share of their wardrobe most people wear, most of the time. The rest is owned, paid for and unused.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Roughly a quarter</h3>
+        <p>Of online clothing orders go back. Apparel returns run far higher than any other category.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Half to two thirds</h3>
+        <p>Of those returns are fit and sizing. Not taste, not quality. The garment did not fit the body.</p>
+      </div>
+      <div class="card">
+        <h3 class="card__title">Most online shoppers</h3>
+        <p>Now order more than one size intending to send the rest back. It was around four in ten in 2018.</p>
+      </div>
+    </div>
+    <p class="timeline__note">
+      Coresight and NRF on returns. McKinsey and Prime AI on fit as the cause.
+      Repeated wardrobe studies on the fifth that gets worn.
+    </p>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <p class="eyebrow">Use cases</p>
+    <h2>Ordinary days, and the ones with a trap in them.</h2>
+    <p class="lede" style="margin-bottom:2rem">
+      Not styling. The practical parts: what is clean, what suits the weather,
+      what the invitation actually meant, and what will not betray you under
+      stage lights or in a photograph.
+    </p>
+    {{ partial "case-cards.html" . }}
+  </div>
+</section>
+
+<section class="section wrap">
+  {{ partial "band.html" (dict
+      "src" "photo-flatlay-large.webp"
+      "alt" "An overhead arrangement of folded knitwear, jeans, a linen shirt, wooden hangers, plants and baskets") }}
+</section>
+
+<section class="section wrap">
+  <p class="eyebrow">Who it is for</p>
+  <h2>Two starting points, one product.</h2>
+  <div class="grid grid--2" style="margin-top:1.5rem">
+    <a class="usecase" href="{{ "for/women/" | relURL }}">
+      <span class="usecase__icon">{{ partial "icon.html" (dict "name" "users") }}</span>
+      <span class="usecase__title">For women</span>
+      <p class="usecase__body">Sizing that means nothing between brands, garments carrying a dozen facts each, and a body that is not the same shape every week.</p>
+    </a>
+    <a class="usecase" href="{{ "for/men/" | relURL }}">
+      <span class="usecase__icon">{{ partial "icon.html" (dict "name" "shirt") }}</span>
+      <span class="usecase__title">For men</span>
+      <p class="usecase__body">A narrower band of what convention reads as unremarkable, so fit, fabric and the exact shade end up carrying all of it.</p>
+    </a>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <p class="eyebrow">Status</p>
+    <h2>Closed alpha. The beta waitlist is open.</h2>
+    <div class="prose">
+      <p>
+        A small invited group is using it on their own clothes. Every screenshot
+        here is that build, not a rendering. Beta opens it to anyone on the
+        list, and the roadmap says what is real today and what is not.
+      </p>
+    </div>
+    <div class="btn-row">
+      {{ partial "waitlist-cta.html" . }}
+      <a class="btn btn--ghost" href="{{ "product/roadmap/" | relURL }}">See the roadmap</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}

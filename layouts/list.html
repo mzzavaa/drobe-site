@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="section wrap">
+  <header class="page__head">
+    {{- with .Params.eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+
+  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+  {{- if eq .Section "use-cases" }}
+  <div style="margin-top:2.5rem">{{ partial "case-cards.html" . }}</div>
+  {{- else }}
+  {{- $pages := .RegularPages.ByWeight }}
+  {{- if $pages }}
+  <div class="grid" style="margin-top:2.5rem">
+    {{- range $pages }}
+    <a class="usecase" href="{{ .RelPermalink }}">
+      {{- with .Params.icon }}
+      <span class="usecase__icon">{{ partial "icon.html" (dict "name" .) }}</span>
+      {{- end }}
+      <span class="usecase__title">{{ .Title }}</span>
+      <p class="usecase__body">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+    </a>
+    {{- end }}
+  </div>
+  {{- end }}
+  {{- end }}
+</section>
+{{ end }}

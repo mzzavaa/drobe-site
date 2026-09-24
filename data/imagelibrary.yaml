@@ -1,0 +1,63 @@
+# Image library. The img shortcode looks files up here and uses `shows` as
+# the alt text. Every image is AI-generated with Google NotebookLM / Gemini;
+# that is also written into each file's metadata. Do not publish one without
+# the credit.
+
+origin: "AI-generated with Google NotebookLM / Gemini"
+images:
+  - file: hero-hand-to-avatar.webp
+    kind: concept
+    has_text: false
+    shows: "A woman in a sage dress raising her hand to meet a glowing wireframe avatar's hand, light trails between them."
+  - file: concept-half-rendered-outfit.webp
+    kind: concept
+    has_text: false
+    shows: "A figure walking, the outfit half photographic and half wireframe mesh."
+  - file: concept-garments-around-avatar.webp
+    kind: concept
+    has_text: false
+    shows: "A wireframe avatar with translucent shirts and jackets suspended around it."
+  - file: concept-weather-split.webp
+    kind: concept
+    has_text: false
+    shows: "Split image: a dark rainy street with two women in coats, and a pale studio with a figure under a transparent umbrella."
+  - file: concept-two-styles-blazer.webp
+    kind: concept
+    has_text: false
+    shows: "Illustration of two women, one in a long dress and one in a suit, holding a blazer between them, fabric flowing."
+  - file: concept-passing-fabric.webp
+    kind: concept
+    has_text: false
+    shows: "Two figures passing a long iridescent ribbon of fabric between them across a pale space."
+  - file: illus-diverse-faces.webp
+    kind: concept
+    has_text: false
+    shows: "Sage illustration: a circle of women's faces of different ages and skin tones among leaves."
+  - file: photo-walk-in-wardrobe.webp
+    kind: photo
+    has_text: false
+    shows: "A full walk-in wardrobe in daylight, clothing arranged by colour, baskets and shoes on open shelving."
+  - file: photo-flatlay-large.webp
+    kind: photo
+    has_text: false
+    shows: "Large overhead flat-lay on sage: knitwear, jeans, a linen shirt, wooden hangers, plants, baskets and books."
+  - file: photo-folded-grid.webp
+    kind: photo
+    has_text: false
+    shows: "A grid of folded garments, four rows, neutral and sage tones on a pale ground."
+  - file: photo-bed-with-swatches.webp
+    kind: photo
+    has_text: false
+    shows: "Folded knitwear on a bed with a colour swatch book, a bag, a scarf and suede shoes."
+  - file: photo-boutique-interior.webp
+    kind: photo
+    has_text: false
+    shows: "A small boutique interior: rails of muted clothing, a table of accessories, large windows."
+  - file: photo-flatlay-with-phone.webp
+    kind: photo
+    has_text: false
+    shows: "Flat-lay on mint: folded knits, loafers, a tan bag, a straw hat, colour swatches and a phone showing the app."
+  - file: photo-packing-on-bed.webp
+    kind: photo
+    has_text: false
+    shows: "A hotel bed with outfits laid out in rows: folded shirts, shoes, a tote, sunglasses, a scarf."

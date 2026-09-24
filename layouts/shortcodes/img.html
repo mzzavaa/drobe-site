@@ -1,0 +1,27 @@
+{{- /*  img.html - an image from the library.
+
+        Looks the file up in data/imagelibrary.yaml, uses its recorded
+        description as the alt text unless one is given, and always renders the
+        AI credit. The credit is not a parameter: every image in the library is
+        generated, and a caption that can be forgotten is exactly what the
+        disclosure page exists to prevent.
+
+        {{< img src="photo-folded-grid.webp" caption="..." >}}
+        {{< img src="..." alt="..." >}}
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $lib := hugo.Data.imagelibrary -}}
+{{- $meta := index (where $lib.images "file" $src) 0 -}}
+{{- with $meta -}}
+<figure class="figure">
+  <img src="{{ printf "media/library/%s" $src | relURL }}"
+       alt="{{ with $.Get "alt" }}{{ . }}{{ else }}{{ .shows }}{{ end }}"
+       width="1376" height="768" loading="lazy" decoding="async">
+  <figcaption>
+    {{- with $.Get "caption" }}<span class="figure__caption">{{ . | markdownify }}</span>{{ end }}
+    <a class="figure__credit" href="{{ "ai-disclosure/" | relURL }}">AI-generated image</a>
+  </figcaption>
+</figure>
+{{- else -}}
+  {{- errorf "img: %q is not in data/imagelibrary.yaml" $src -}}
+{{- end -}}

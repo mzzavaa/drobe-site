@@ -1,0 +1,15 @@
+{{- /*  icon.html - inline SVG, coloured by currentColor.
+
+        The same rule the app follows: Lucide geometry, 24x24 viewBox,
+        stroke 1.75, round caps and joins, no fill, no icon font, no emoji.
+        Files live in layouts/partials/icons/ so Hugo can include them
+        directly and they ship inline rather than as extra requests.
+
+        Usage:  {{ partial "icon.html" (dict "name" "sun") }}
+                {{ partial "icon.html" (dict "name" "sun" "class" "icon icon--sm") }}
+*/ -}}
+{{- $name  := .name -}}
+{{- $class := .class | default "icon" -}}
+{{- $svg   := string (partial (printf "icons/%s.svg" $name) .) -}}
+{{- $attrs := printf `<svg class="%s" aria-hidden="true" focusable="false"` $class -}}
+{{- replaceRE `^<svg` $attrs $svg | safeHTML -}}

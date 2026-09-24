@@ -1,0 +1,120 @@
+/* DROBE - design tokens
+   ---------------------------------------------------------------------------
+   Every value here is copied from the product's own theme file,
+   apps/mobile/src/theme/colors.ts, rather than sampled from a screenshot. The
+   site and the app should not drift apart; when the app's palette changes,
+   this file is the one place to change.
+
+   The app ships a light and a dark palette. Both are reproduced, so the site
+   follows the reader's system setting the same way the app follows the
+   device's.
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Brand */
+  --sage:          #7a8c78;
+  --sage-bg:       #e2eedc;
+  --sage-bg-light: #eef5ea;
+
+  /* Surfaces */
+  --background:    #F6F9F5;
+  --surface:       #FFFFFF;
+  --surface-alt:   #f0f5ed;
+
+  /* Text */
+  --text:           #1a1e18;
+  --text-secondary: #4a5248;
+  --text-muted:     #8a9488;
+  --text-inverse:   #FFFFFF;
+
+  /* Lines */
+  --border:       #d8e4d4;
+  --border-light: #eaf0e7;
+
+  /* Semantic. Used sparingly: --caution marks a pitfall, never decoration. */
+  --caution: #C0392B;
+  --good:    #27AE60;
+
+  /* Depth. The app uses flat cards on a tinted ground; shadows stay almost
+     invisible so the page reads as calm rather than layered. */
+  --shadow-sm: 0 1px 2px rgba(26, 30, 24, .04);
+  --shadow-md: 0 2px 12px rgba(26, 30, 24, .06);
+
+  /* Type. The app uses the platform system font and no webfont. Doing the
+     same here keeps the two consistent and loads nothing from anywhere. */
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+          Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Scale. Ratios follow the app's typography.ts, extended upward for the
+     display sizes a web page needs and the app does not. */
+  --t-xs:   0.6875rem;  /* 11 */
+  --t-sm:   0.8125rem;  /* 13 */
+  --t-base: 1rem;       /* 16 - larger than the app's 15; this is read further away */
+  --t-md:   1.0625rem;  /* 17 */
+  --t-lg:   1.25rem;    /* 20 */
+  --t-xl:   1.5rem;     /* 24 */
+  --t-2xl:  1.75rem;    /* 28 */
+  --t-3xl:  2.25rem;
+  --t-4xl:  3rem;
+
+  --space:  1rem;
+  --radius: 14px;       /* the app's card radius */
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --measure: 68ch;      /* running text never gets wider than this */
+  --page:    1180px;
+}
+
+/* The reader chose dark at the OS level and has expressed no page preference. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sage:          #8fa08d;
+    --sage-bg:       #1E2B1A;
+    --sage-bg-light: #192616;
+
+    --background:    #111714;
+    --surface:       #1C2219;
+    --surface-alt:   #192016;
+
+    --text:           #EDF2EB;
+    --text-secondary: #A4B4A0;
+    --text-muted:     #6A7A66;
+    --text-inverse:   #111714;
+
+    --border:       #2C3C28;
+    --border-light: #222E1E;
+
+    --caution: #E05C4B;
+    --good:    #4ABA70;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3);
+    --shadow-md: 0 2px 12px rgba(0, 0, 0, .35);
+  }
+}
+
+/* An explicit choice wins over the OS in both directions. */
+:root[data-theme="dark"] {
+  --sage:          #8fa08d;
+  --sage-bg:       #1E2B1A;
+  --sage-bg-light: #192616;
+
+  --background:    #111714;
+  --surface:       #1C2219;
+  --surface-alt:   #192016;
+
+  --text:           #EDF2EB;
+  --text-secondary: #A4B4A0;
+  --text-muted:     #6A7A66;
+  --text-inverse:   #111714;
+
+  --border:       #2C3C28;
+  --border-light: #222E1E;
+
+  --caution: #E05C4B;
+  --good:    #4ABA70;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3);
+  --shadow-md: 0 2px 12px rgba(0, 0, 0, .35);
+}

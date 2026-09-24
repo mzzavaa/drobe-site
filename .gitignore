@@ -1,0 +1,28 @@
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets - never in this repo, which is public
+.env
+.env.*
+*.pem
+*.key
+
+# Office documents stay local
+*.pptx
+*.potx
+*.pdf
+*.docx
+*.xlsx
+
+# Working notes stay local
+KAJABI.md
+_to_delete/
+MEDIA.md
+BRAND.md

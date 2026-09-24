@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- $wide := .Params.wide | default false -}}
+<article class="section wrap page{{ if $wide }} page--wide{{ end }}">
+
+  <header class="page__head">
+    {{- with .Parent }}{{ if not .IsHome }}
+    <p class="breadcrumb"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+    {{ end }}{{- end }}
+    {{- with .Params.eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="page__body">
+    <div class="page__main prose">
+      {{ .Content }}
+    </div>
+
+    {{- if not $wide }}
+    {{- /* The aside carries what a reader wants next: the rest of this group,
+           then the one action on the site. It is the reason the layout is not
+           a single column in a wide box. */ -}}
+    <aside class="page__aside">
+      {{- with .Params.group }}
+      {{- $group := . }}
+      {{- $siblings := where $.Parent.RegularPages "Params.group" $group }}
+      {{- if gt (len $siblings) 1 }}
+      <div class="aside-card">
+        <p class="aside-card__label">{{ $group }}</p>
+        <ul class="aside-card__list">
+          {{- range $siblings.ByWeight }}
+          <li{{ if eq .Permalink $.Permalink }} class="is-current"{{ end }}>
+            {{- if eq .Permalink $.Permalink }}
+            <span>{{ .Title }}</span>
+            {{- else }}
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{- end }}
+          </li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+      {{- end }}
+
+      <div class="aside-card aside-card--cta">
+        <p class="aside-card__label">Where it is</p>
+        <p>Closed alpha with selected users. The beta waitlist is open to anyone.</p>
+        {{ partial "waitlist-cta.html" . }}
+      </div>
+    </aside>
+    {{- end }}
+  </div>
+
+  {{- if .PrevInSection }}{{ else }}{{ end }}
+  {{- $siblings := .Parent.RegularPages }}
+  {{- if gt (len $siblings) 1 }}
+  <nav class="page-nav">
+    {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} &rarr;</a>{{ end }}
+  </nav>
+  {{- end }}
+</article>
+{{ end }}

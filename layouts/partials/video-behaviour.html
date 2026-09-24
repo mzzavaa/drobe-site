@@ -1,0 +1,37 @@
+{{- /*  video-behaviour.html
+
+        Two things HTML cannot express on a <video>:
+
+        1. Play a fixed number of times. `loop` is all-or-nothing, so a count
+           lives in data-plays and is counted here.
+        2. Honour a reduced-motion preference. CSS cannot pause a video.
+
+        Inline and small rather than a file, because it has to run before the
+        first frame is painted and is not worth a request. With scripting off
+        the video plays once and stops, which is a reasonable place to land.
+*/ -}}
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('video[data-plays]').forEach(function (v) {
+        if (reduce) {
+          v.removeAttribute('autoplay');
+          v.pause();
+          v.currentTime = 0;
+          return;
+        }
+        var target = parseInt(v.dataset.plays, 10) || 1;
+        var played = 0;
+        v.addEventListener('ended', function () {
+          played += 1;
+          if (played < target) {
+            v.currentTime = 0;
+            v.play();
+          }
+        });
+      });
+    });
+  })();
+</script>

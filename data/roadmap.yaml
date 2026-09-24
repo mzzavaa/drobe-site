@@ -1,0 +1,162 @@
+# The roadmap, as data.
+#
+# Ranges are indicative, not commitments, and the page says so. Edit here
+# rather than in the template.
+#
+# status: shipped | active | next | planned
+#   shipped  already usable
+#   active   being worked on right now
+#   next     the immediate next phase
+#   planned  after that
+#
+# Deliberately written in terms of what a person can do, not how it is built.
+
+meta:
+  note: "Ranges are indicative. They describe order and rough timing, not commitments."
+  # The timeline plots col/span rather than parsing dates. Column 1 is the
+  # first quarter below; add a quarter here and every bar keeps its position.
+  quarters: ["Q3 2026", "Q4 2026", "Q1 2027", "Q2 2027", "Q3 2027", "Q4 2027"]
+  now: 1
+
+phases:
+  - id: alpha
+    col: 1
+    span: 1
+    range: "Now"
+    dates: "Q3 2026"
+    status: active
+    title: "Closed alpha"
+    summary: "A small invited group, using it on their own clothes."
+    detail: >-
+      Selected users, on purpose. An alpha is for finding what breaks on real
+      wardrobes and real bodies, and that goes better with a few people you can
+      talk to than with a few thousand you cannot.
+    items:
+      - "Your wardrobe, photographed and visible in one place"
+      - "Weather and calendar on the same screen as the wardrobe"
+      - "Events carrying their own dress code"
+      - "Everything stored on the device"
+
+  - id: beta
+    col: 2
+    span: 1
+    range: "Next"
+    dates: "Q4 2026"
+    status: next
+    title: "Open beta"
+    summary: "The waitlist is open now. Same build, far more people."
+    detail: >-
+      Beta is where the wardrobe stops living only on one phone. That means
+      accounts, and it means being clear about what happens to your photographs
+      before it opens rather than after.
+    items:
+      - "Waitlist open to anyone"
+      - "Accounts, so a wardrobe survives a lost phone"
+      - "Your own body rather than a placeholder"
+      - "Written commitments on data, published before the first upload"
+
+  - id: basics
+    col: 2
+    span: 2
+    range: "Then"
+    dates: "Q4 2026 - Q1 2027"
+    status: planned
+    title: "The basics, done properly"
+    summary: "Fit and combination, proved on the narrowest set of variables first."
+    detail: >-
+      The first thing that has to be right is whether a garment looks the way it
+      will actually look on you. Everything else is built on that being true, so
+      it gets proved on the simplest case before the harder ones are added.
+    items:
+      - "A garment rendered on your measurements, reliably"
+      - "Two items checked against each other"
+      - "Add an item from a photograph you took"
+      - "Filter and find, at wardrobe scale rather than demo scale"
+
+  - id: men
+    col: 3
+    span: 1
+    range: "Then"
+    dates: "Q1 2027"
+    status: planned
+    title: "Menswear first"
+    summary: "Fewer silhouettes in the conventional range, so fewer variables to get right."
+    detail: >-
+      A sequencing decision about difficulty, not about who this is for. Where
+      convention allows a narrower set of shapes, there are fewer ways for a
+      render to be subtly wrong, which makes it the right place to find out
+      whether the core is trustworthy. The findings carry straight over.
+    items:
+      - "Shirts, trousers, jackets, knitwear"
+      - "Shade and contrast, compared side by side instead of from memory"
+      - "Fit read from proportions rather than a size label"
+
+  - id: women
+    col: 4
+    span: 1
+    range: "After"
+    dates: "Q2 2027"
+    status: planned
+    title: "Broader wardrobes"
+    summary: "More garment types, more drape, more ways for a render to be wrong."
+    detail: >-
+      Dresses, skirts, and anything that drapes rather than hangs are harder to
+      render honestly, and getting them wrong is worse than not offering them.
+      They come once the simple cases are dependable.
+    items:
+      - "Dresses, skirts and draped garments"
+      - "Necklines, hems and where a garment actually falls on you"
+      - "The garment facts worth keeping: sheer, creases, rides up"
+
+  - id: cycle
+    col: 4
+    span: 2
+    range: "After"
+    dates: "Q2 - Q3 2027"
+    status: planned
+    title: "A body that changes"
+    summary: "Fit across a cycle, and through everything else that changes a body."
+    detail: >-
+      A wardrobe app that assumes one fixed body is wrong about almost everyone.
+      Fit changes across a cycle, and equally through pregnancy and after it,
+      weight change, illness, injury or a decade. The same mechanism handles all
+      of them.
+    items:
+      - "More than one body state, switched rather than rebuilt"
+      - "Saved sets for the days you do not want to decide anything"
+      - "Comfort treated as a property of the garment, not an afterthought"
+
+  - id: impact
+    col: 5
+    span: 1
+    range: "After"
+    dates: "Q3 2027"
+    status: planned
+    title: "What you own versus what you buy"
+    summary: "Wear counts, forgotten items, and getting things back out of the house."
+    detail: >-
+      The largest environmental lever most people have is wearing what they
+      already bought. That needs a number attached to each item rather than a
+      feeling, and a low enough barrier to pass things on that the bag by the
+      door actually leaves.
+    items:
+      - "Wear count per item"
+      - "Nudges on things not worn in a long time"
+      - "Listing that reuses photography you already have"
+
+  - id: layering
+    col: 5
+    span: 2
+    range: "After"
+    dates: "Q3 - Q4 2027"
+    status: planned
+    title: "Layering and climate"
+    summary: "Whole outfits across a day, not one garment at a time."
+    detail: >-
+      The hardest rendering problem, and the one that makes travel and packing
+      work. A layered outfit is not three garments shown together; it is
+      garments that sit over and under each other correctly.
+    items:
+      - "Outfits built from several pieces at once"
+      - "A day planned as indoor and outdoor, not one temperature"
+      - "Packing a set of days rather than a set of outfits"

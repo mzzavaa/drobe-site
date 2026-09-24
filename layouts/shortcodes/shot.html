@@ -1,0 +1,9 @@
+{{- /*  shot.html - a screenshot of the running demo.
+
+        {{< shot src="home-desktop.png" alt="..." caption="..." >}}
+*/ -}}
+<figure class="shot">
+  <img src="{{ printf "screenshots/%s" (.Get "src") | relURL }}"
+       alt="{{ .Get "alt" }}" loading="lazy" decoding="async">
+  {{- with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

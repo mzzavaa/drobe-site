@@ -1,0 +1,7 @@
+{{- /*  band.html - a full-width image between sections, for the home page.
+        Same credit rule as the img shortcode. */ -}}
+<div class="band">
+  <img src="{{ printf "media/library/%s" .src | relURL }}" alt="{{ .alt }}"
+       width="1376" height="768" loading="lazy" decoding="async">
+  <a class="band__credit" href="{{ "ai-disclosure/" | relURL }}">AI-generated image</a>
+</div>

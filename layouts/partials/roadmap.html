@@ -1,0 +1,71 @@
+{{- /*  roadmap.html - an actual timeline, not a grid of boxes.
+
+        Phases are bars on a quarter grid. Length means duration and position
+        means when, so overlaps and sequence are readable at a glance instead
+        of having to be inferred from eight date labels.
+
+        col and span come from data/roadmap.yaml. Nothing here parses a date.
+
+        Below 900px the grid collapses to a list: eight bars across six
+        quarters on a phone is unreadable, and a list is honest about that
+        rather than pretending to be a chart.
+*/ -}}
+{{- $r := hugo.Data.roadmap -}}
+{{- $n := len $r.meta.quarters -}}
+
+<figure class="timeline" style="--quarters: {{ $n }}">
+  <div class="timeline__grid">
+
+    {{- /* Column headings */}}
+    <div class="timeline__corner"></div>
+    {{- range $i, $q := $r.meta.quarters }}
+    <div class="timeline__quarter{{ if eq (add $i 1) $r.meta.now }} timeline__quarter--now{{ end }}">
+      {{ $q }}{{ if eq (add $i 1) $r.meta.now }} <span class="timeline__nowtag">now</span>{{ end }}
+    </div>
+    {{- end }}
+
+    {{- /* One row per phase: a label, then a bar placed on the quarter grid */}}
+    {{- range $r.phases }}
+    <div class="timeline__label">{{ .title }}</div>
+    <a class="timeline__bar timeline__bar--{{ .status }}"
+       href="#{{ .id }}"
+       style="grid-column: {{ add .col 1 }} / span {{ .span }}"
+       title="{{ .dates }} - {{ .summary }}">
+      <span class="timeline__bar-text">{{ .dates }}</span>
+    </a>
+    {{- end }}
+
+  </div>
+
+  <figcaption class="timeline__note">{{ $r.meta.note }}</figcaption>
+</figure>
+
+{{- /* The same phases as a list, for narrow screens. One source, two shapes. */}}
+<ol class="timeline-list">
+  {{- range $r.phases }}
+  <li class="timeline-list__item timeline-list__item--{{ .status }}">
+    <a href="#{{ .id }}">
+      <span class="timeline-list__dates">{{ .dates }}</span>
+      <span class="timeline-list__title">{{ .title }}</span>
+      <span class="timeline-list__summary">{{ .summary }}</span>
+    </a>
+  </li>
+  {{- end }}
+</ol>
+
+{{- range $r.phases }}
+<section class="phase" id="{{ .id }}">
+  <div class="phase__head">
+    <span class="chip chip--{{ .status }}">{{ if eq .status "active" }}In progress{{ else if eq .status "next" }}Next{{ else if eq .status "shipped" }}Available{{ else }}Planned{{ end }}</span>
+    <span class="phase__dates">{{ .dates }}</span>
+  </div>
+  <h2>{{ .title }}</h2>
+  <p class="phase__summary">{{ .summary }}</p>
+  <p>{{ .detail }}</p>
+  <ul class="phase__items">
+    {{- range .items }}
+    <li>{{ partial "icon.html" (dict "name" "check" "class" "icon icon--sm") }}<span>{{ . }}</span></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

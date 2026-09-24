@@ -1,0 +1,53 @@
+baseURL = 'https://drobe.app/'
+locale = 'en-us'
+title = 'DROBE'
+enableEmoji = false
+disableHugoGeneratorInject = true
+disableKinds = ['taxonomy', 'term']
+
+# Palette taken from the app itself, not from colours picked to look similar.
+# sage #7a8c78 · sageBg #e2eedc · background #F6F9F5 · text #1a1e18
+
+[params]
+  description = "See everything you own, on your own body, and know what to wear before the morning starts."
+  tagline     = "Your body. Your closet. Your rules."
+
+  # Stated once here rather than repeated in prose across the site.
+  stage       = "Alpha"
+  stageNote   = "In closed alpha with selected users. The beta waitlist is open."
+
+  # Beta waitlist: a plain HTML form on /beta/ that posts to this URL.
+  # Empty, and the form is replaced by a "not open yet" note.
+  waitlistAction = "https://www.lindamohamed.com/forms/2149732531/form_submissions"
+
+  # Where every "Join the beta waitlist" button points. Empty means the form
+  # on /beta/. Only set it if the waitlist moves off this site entirely.
+  waitlist    = ""
+
+[[menus.main]]
+  name = "The problem"
+  url = "/#problem"
+  weight = 10
+[[menus.main]]
+  name = "Use cases"
+  url = "/use-cases/"
+  weight = 20
+[[menus.main]]
+  name = "Product"
+  url = "/product/"
+  weight = 30
+[[menus.main]]
+  name = "Roadmap"
+  url = "/product/roadmap/"
+  weight = 40
+[[menus.main]]
+  name = "Join the beta"
+  url = "/beta/"
+  weight = 50
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3

@@ -1,0 +1,12 @@
+{{- /*  render-link.html - Markdown links.
+
+        Content writes site links as "/product/roadmap/". Those are made
+        relative to baseURL here, so the site works both on its own domain and
+        under a sub-path such as username.github.io/drobe-site/.
+*/ -}}
+{{- $href := .Destination -}}
+{{- if and (hasPrefix $href "/") (not (hasPrefix $href "//")) -}}
+  {{- $href = strings.TrimPrefix "/" $href | relURL -}}
+{{- end -}}
+<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
+{{- /* chomp trailing newline */ -}}

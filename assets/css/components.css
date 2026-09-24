@@ -1,0 +1,733 @@
+/* DROBE - components
+   The app's visual language: a tinted ground, flat sage-tinted cards, hairline
+   borders, generous radius, no drop shadows doing the work of hierarchy.
+   -------------------------------------------------------------------------- */
+
+/* --- chrome ------------------------------------------------------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--background) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--border-light);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 60px;
+}
+.nav__brand {
+  font-weight: 700;
+  letter-spacing: .16em;
+  font-size: var(--t-sm);
+  text-decoration: none;
+  margin-right: auto;
+}
+.nav__links {
+  display: flex;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav__links a {
+  font-size: var(--t-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.nav__links a:hover,
+.nav__links a[aria-current="page"] { color: var(--sage); }
+
+.footer {
+  border-top: 1px solid var(--border-light);
+  padding-block: 2.5rem;
+  color: var(--text-secondary);
+  font-size: var(--t-sm);
+}
+.footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: baseline;
+}
+.footer__row > :last-child { margin-left: auto; }
+
+/* --- hero --------------------------------------------------------------- */
+
+.hero { padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(2rem, 5vw, 3rem); }
+.hero__grid {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .hero__grid { grid-template-columns: 1fr 1fr; }
+}
+.hero__lead {
+  font-size: var(--t-lg);
+  color: var(--text-secondary);
+  max-width: 42ch;
+}
+.hero__shot {
+  background: var(--sage-bg);
+  border-radius: var(--radius);
+  padding: clamp(.75rem, 2vw, 1.25rem);
+}
+.hero__shot img { border-radius: var(--radius-sm); box-shadow: var(--shadow-md); }
+
+/* --- eyebrow, labels ---------------------------------------------------- */
+
+.eyebrow {
+  font-size: var(--t-xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 600;
+  margin: 0 0 .6rem;
+}
+
+.chip {
+  display: inline-block;
+  font-size: var(--t-xs);
+  padding: .25rem .6rem;
+  border-radius: var(--radius-pill);
+  background: var(--sage-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.chip--stage {
+  background: transparent;
+  color: var(--sage);
+  border-color: var(--sage);
+  font-weight: 600;
+}
+
+/* --- cards -------------------------------------------------------------- */
+
+.card {
+  background: var(--sage-bg);
+  border-radius: var(--radius);
+  padding: 1.35rem;
+}
+.card--plain {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+}
+.card__title { font-size: var(--t-md); margin: 0 0 .4rem; }
+.card__title a { text-decoration: none; }
+.card p:last-child { margin-bottom: 0; }
+.card__meta {
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+  margin-top: .75rem;
+}
+
+/* A use case card leads with the situation, not the feature. */
+.usecase {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.usecase:hover {
+  border-color: var(--sage);
+  transform: translateY(-2px);
+  color: inherit;
+}
+.usecase__icon { color: var(--sage); }
+.usecase__title { font-size: var(--t-md); font-weight: 700; }
+.usecase__body { font-size: var(--t-sm); color: var(--text-secondary); margin: 0; }
+
+/* --- the pitfall / fix pair -------------------------------------------- */
+
+/* Used all through the use cases. The point of the product is the gap between
+   these two columns, so they are set as one object rather than two lists. */
+.pair {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+.pair + .pair { margin-top: .75rem; }
+@media (min-width: 720px) {
+  .pair { grid-template-columns: 1fr 1fr; }
+}
+.pair__side { padding: 1.1rem 1.25rem; }
+.pair__side + .pair__side {
+  border-top: 1px solid var(--border-light);
+  background: var(--sage-bg-light);
+}
+@media (min-width: 720px) {
+  .pair__side + .pair__side {
+    border-top: 0;
+    border-left: 1px solid var(--border-light);
+  }
+}
+.pair__label {
+  font-size: var(--t-xs);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 .35rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.pair__label--problem { color: var(--caution); }
+.pair__label--fix { color: var(--sage); }
+.pair__side p { margin: 0; font-size: var(--t-sm); color: var(--text-secondary); }
+
+/* --- screenshots -------------------------------------------------------- */
+
+.shot { margin: 2rem 0; }
+.shot img {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  background: var(--surface);
+}
+.shot figcaption {
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+  margin-top: .6rem;
+}
+/* The three breakpoints, all rendered at the same height.
+ *
+ * Columns are proportional to each shot's ASPECT RATIO, not to its viewport
+ * width. With width:100% on the image, height = column width / aspect, so
+ * making the column proportional to the aspect makes every height identical.
+ *
+ *   phone    390x844   0.46209  ->  4621fr
+ *   tablet   768x1024  0.75000  ->  7500fr
+ *   desktop  1280x900  1.42222  -> 14222fr
+ *
+ * Four significant figures rather than three: at three the heights differ by
+ * about a tenth of a pixel, which is invisible but is also free to remove.
+ *
+ * Sizing them by viewport width instead - 390 / 768 / 1280 - is what left the
+ * phone short and the tablet tall. Gaps are subtracted before the fr split, so
+ * they do not disturb it.
+ */
+.shot--trio {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 4621fr 7500fr 14222fr;
+  align-items: start;
+}
+.shot--trio img { width: 100%; height: auto; }
+
+@media (max-width: 720px) {
+  /* Three across leaves the phone shot about 60px wide. Stack instead. */
+  .shot--trio { grid-template-columns: 1fr; justify-items: center; }
+  .shot--trio img { max-width: 22rem; }
+}
+
+/* A single screenshot is capped by height rather than width. A phone capture
+   at full column width would be about 1500px tall; a desktop one at the same
+   height reads at a comparable size, which is the point. */
+.shot > img {
+  max-height: 32rem;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+/* --- steps -------------------------------------------------------------- */
+
+/* Numbered because these are genuinely sequential - each step needs the one
+   before it. Where a list is not a sequence it is not numbered. */
+.steps { counter-reset: step; list-style: none; margin: 0; padding: 0; }
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.75rem;
+  margin-bottom: 1.1rem;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: var(--sage-bg);
+  color: var(--sage);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+/* --- callout ------------------------------------------------------------ */
+
+.note {
+  border-left: 3px solid var(--sage);
+  background: var(--sage-bg-light);
+  padding: .9rem 1.1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--t-sm);
+  color: var(--text-secondary);
+  margin: 1.5rem 0;
+}
+.note p:last-child { margin-bottom: 0; }
+.note strong { color: var(--text); }
+
+/* --- buttons ------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .68rem 1.15rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.btn--primary { background: var(--sage); color: var(--text-inverse); }
+.btn--primary:hover { color: var(--text-inverse); filter: brightness(1.06); }
+.btn--ghost { border-color: var(--border); color: var(--text); background: var(--surface); }
+.btn--ghost:hover { border-color: var(--sage); color: var(--sage); }
+.btn-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; }
+
+/* --- misc --------------------------------------------------------------- */
+
+.lede { font-size: var(--t-lg); color: var(--text-secondary); max-width: var(--measure); }
+
+.icon { width: 1.25rem; height: 1.25rem; display: block; }
+.icon--sm { width: 1rem; height: 1rem; }
+
+.status-yes { color: var(--good); font-weight: 600; }
+.status-no  { color: var(--text-muted); }
+
+.breadcrumb {
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+.breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+.breadcrumb a:hover { color: var(--sage); }
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-light);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  font-size: var(--t-sm);
+}
+
+/* --- grouped cards ------------------------------------------------------ */
+
+/* Groups are a real division of the content, not decoration: they say when a
+   situation happens. The heading is quiet because the cards are the content. */
+.group + .group { margin-top: 2.5rem; }
+.group__name {
+  font-size: var(--t-xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin: 0 0 .9rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* --- roadmap timeline --------------------------------------------------- */
+
+/* A bar chart over quarters. Length is duration, position is when, so the
+   sequence and the overlaps are visible without reading eight date labels.
+   The grid is one label column plus one column per quarter. */
+.timeline { margin: 2.5rem 0 1rem; }
+
+.timeline__grid {
+  display: grid;
+  grid-template-columns: minmax(9rem, 15rem) repeat(var(--quarters), 1fr);
+  align-items: center;
+  gap: .4rem .25rem;
+  position: relative;
+}
+
+.timeline__corner { grid-column: 1; }
+
+.timeline__quarter {
+  font-size: var(--t-xs);
+  color: var(--text-muted);
+  text-align: center;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border-light);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.timeline__quarter--now { color: var(--sage); font-weight: 700; }
+.timeline__nowtag {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: var(--sage);
+  color: var(--text-inverse);
+  border-radius: var(--radius-pill);
+  padding: .05rem .35rem;
+  vertical-align: 1px;
+}
+
+.timeline__label {
+  grid-column: 1;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  padding-right: 1rem;
+  text-align: right;
+  line-height: 1.3;
+}
+
+/* The bar is the link. Height is uniform, so nothing looks ragged and the
+   only thing varying between rows is what actually varies: when and how long. */
+.timeline__bar {
+  height: 2.4rem;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  padding: 0 .85rem;
+  text-decoration: none;
+  font-size: var(--t-xs);
+  font-variant-numeric: tabular-nums;
+  background: var(--sage-bg);
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  transition: transform .12s ease, border-color .12s ease;
+  overflow: hidden;
+}
+.timeline__bar:hover {
+  border-color: var(--sage);
+  transform: translateY(-1px);
+  color: var(--text);
+}
+.timeline__bar-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.timeline__bar--active {
+  background: var(--sage);
+  color: var(--text-inverse);
+  font-weight: 700;
+}
+.timeline__bar--active:hover { color: var(--text-inverse); }
+.timeline__bar--next {
+  background: var(--surface);
+  border-color: var(--sage);
+  color: var(--sage);
+  font-weight: 600;
+}
+
+.timeline__note {
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+  margin-top: 1.1rem;
+}
+
+/* The list is the narrow-screen shape. Eight bars over six quarters on a phone
+   is unreadable; a list says so instead of pretending to be a chart. */
+.timeline-list { display: none; }
+
+@media (max-width: 900px) {
+  .timeline__grid { display: none; }
+  .timeline-list {
+    display: block;
+    list-style: none;
+    margin: 2rem 0 1rem;
+    padding: 0 0 0 1.1rem;
+    border-left: 2px solid var(--border);
+  }
+  .timeline-list__item { position: relative; margin-bottom: 1.1rem; }
+  .timeline-list__item::before {
+    content: "";
+    position: absolute;
+    left: -1.5rem;
+    top: .45rem;
+    width: .7rem;
+    height: .7rem;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .timeline-list__item--active::before { background: var(--sage); }
+  .timeline-list__item--next::before   { background: var(--surface); border: 2px solid var(--sage); }
+  .timeline-list__item a { display: grid; gap: .15rem; text-decoration: none; color: inherit; }
+  .timeline-list__dates {
+    font-size: var(--t-xs);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .timeline-list__title { font-weight: 700; }
+  .timeline-list__summary { font-size: var(--t-sm); color: var(--text-secondary); }
+}
+
+/* --- phase detail ------------------------------------------------------- */
+
+.phase {
+  border-top: 1px solid var(--border-light);
+  padding-top: 2rem;
+  margin-top: 2.5rem;
+  scroll-margin-top: 5rem;   /* clears the sticky nav when jumped to */
+}
+.phase__head {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .6rem;
+}
+.phase__dates {
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.phase h2 { margin-bottom: .35rem; }
+.phase__summary {
+  font-size: var(--t-lg);
+  color: var(--text-secondary);
+  max-width: var(--measure);
+}
+.phase p { max-width: var(--measure); }
+
+.phase__items {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .phase__items { grid-template-columns: repeat(2, 1fr); }
+}
+.phase__items li {
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  font-size: var(--t-sm);
+  color: var(--text-secondary);
+  background: var(--sage-bg-light);
+  border-radius: var(--radius-sm);
+  padding: .7rem .9rem;
+}
+.phase__items .icon { color: var(--sage); flex: none; margin-top: .15rem; }
+
+.chip--active  { background: var(--sage); color: var(--text-inverse); border-color: var(--sage); font-weight: 600; }
+.chip--next    { background: var(--sage-bg); color: var(--sage); border-color: var(--sage); font-weight: 600; }
+.chip--shipped { background: transparent; color: var(--good); border-color: var(--good); font-weight: 600; }
+.chip--planned { background: transparent; color: var(--text-muted); }
+
+/* --- avatar well -------------------------------------------------------- */
+
+/* The app's own avatar card: the figure centred in a sage well, contained
+   rather than cropped. The card colour is baked into the video, so the well
+   matches it exactly and keeps that ground in both themes - as every
+   screenshot on this site does, all of which are of the light theme. */
+.avatar-well {
+  background: #e2eedc;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+.avatar-well__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 720 / 900;
+  object-fit: contain;   /* never crop the figure - the app's rule */
+}
+
+/* The hero media column. Capped so the avatar does not tower over the copy on
+   a wide screen; the well is portrait and would otherwise set the row height. */
+.hero__media { max-width: 26rem; margin-inline: auto; width: 100%; }
+
+/* --- page layout -------------------------------------------------------- */
+
+/* A detail page is a header across the full width, then a main column and an
+   aside. One narrow column of text in a wide container looks like a mistake;
+   this fills the width with something useful instead of stretching the lines
+   past the point where they are comfortable to read. */
+.page__head { max-width: var(--measure); margin-bottom: 2.5rem; }
+
+.page__body { display: grid; gap: 2.5rem; }
+@media (min-width: 1000px) {
+  .page__body { grid-template-columns: minmax(0, 1fr) 17rem; gap: 3.5rem; }
+}
+
+.page__main { min-width: 0; }        /* lets wide children scroll, not overflow */
+
+/* Pages that are mostly screenshots take the whole width; an aside would
+   squeeze a three-up trio to the point of uselessness. */
+.page--wide .page__body { display: block; }
+
+.page__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-self: start;
+}
+@media (min-width: 1000px) {
+  .page__aside { position: sticky; top: 5rem; }
+}
+
+.aside-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.25rem;
+}
+.aside-card--cta { background: var(--sage-bg); border-color: transparent; }
+.aside-card--cta p { font-size: var(--t-sm); color: var(--text-secondary); }
+.aside-card--cta .btn-row { margin-top: 1rem; }
+.aside-card__label {
+  font-size: var(--t-xs);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--sage);
+  margin: 0 0 .7rem;
+}
+.aside-card__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.aside-card__list li { font-size: var(--t-sm); line-height: 1.35; }
+.aside-card__list a { color: var(--text-secondary); text-decoration: none; }
+.aside-card__list a:hover { color: var(--sage); }
+.aside-card__list .is-current span {
+  color: var(--text);
+  font-weight: 700;
+  border-left: 2px solid var(--sage);
+  padding-left: .55rem;
+  margin-left: -.7rem;
+  display: inline-block;
+}
+
+/* Figures sit in the main column and take its full width. Capped so a 1280px
+   screenshot is not shown at 1280px on a wide display. */
+.shot img { max-width: 100%; }
+.shot--trio { max-width: 100%; }
+
+/* --- symmetric grids ---------------------------------------------------- */
+
+/* auto-fit picks whatever fits, which for six cards in a 1180px container is
+   four across and then two - a ragged last row. Where the number of items is
+   known, the column count is stated so the rows come out even. */
+.grid--3, .grid--4 { grid-template-columns: 1fr; }
+
+@media (min-width: 620px) {
+  .grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 980px) {
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Cards fill their row so the tallest sets the height and nothing sits short.
+   Grid stretches by default; these have their own display and would not. */
+.grid > .card,
+.grid > .usecase { height: 100%; }
+.card { display: flex; flex-direction: column; }
+
+/* --- library images ----------------------------------------------------- */
+
+.figure { margin: 2.25rem 0; }
+.figure img {
+  border-radius: var(--radius);
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.figure figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .4rem 1rem;
+  margin-top: .6rem;
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+}
+.figure__caption { flex: 1 1 22rem; }
+
+/* Small, permanent, never styled to disappear. Every image in the library is
+   generated and the reader is entitled to know without hunting for it. */
+.figure__credit {
+  font-size: var(--t-xs);
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: .12rem .55rem;
+  white-space: nowrap;
+}
+.figure__credit:hover { color: var(--sage); border-color: var(--sage); }
+
+/* A band that runs the width of the section, to break up rows of cards. */
+.band { position: relative; margin-top: 2.5rem; }
+.band img {
+  width: 100%;
+  height: clamp(14rem, 30vw, 24rem);
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+}
+.band__credit {
+  position: absolute;
+  right: .75rem;
+  bottom: .75rem;
+  font-size: var(--t-xs);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--text-secondary);
+  border-radius: var(--radius-pill);
+  padding: .18rem .6rem;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+}
+.band__credit:hover { color: var(--sage); }
+
+/* --- waitlist form ------------------------------------------------------ */
+
+.waitlist {
+  margin: 1.75rem 0;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  scroll-margin-top: 5rem;
+}
+.waitlist__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: .9rem;
+  margin-bottom: 1rem;
+}
+.waitlist__field { display: grid; gap: .35rem; }
+.waitlist__label { font-size: var(--t-sm); font-weight: 600; color: var(--text); }
+.waitlist input {
+  font: inherit;
+  font-size: var(--t-base);
+  color: var(--text);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .65rem .8rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.waitlist input:focus-visible { outline: 2px solid var(--sage); outline-offset: 1px; border-color: var(--sage); }
+.waitlist .btn { cursor: pointer; font-family: inherit; }
+.waitlist__small { font-size: var(--t-xs); color: var(--text-muted); margin: .9rem 0 0; }

@@ -1,0 +1,14 @@
+{{- /*  shots.html - the same screen at the three breakpoints the app targets.
+
+        {{< shots screen="closet" caption="..." >}}
+*/ -}}
+{{- $screen := .Get "screen" -}}
+<figure class="shot">
+  <div class="shot--trio">
+    {{- range slice "phone" "tablet" "desktop" }}
+    <img src="{{ printf "screenshots/%s-%s.png" $screen . | relURL }}"
+         alt="{{ $screen }} screen at {{ . }} width" loading="lazy" decoding="async">
+    {{- end }}
+  </div>
+  {{- with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

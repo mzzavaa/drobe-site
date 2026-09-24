@@ -1,0 +1,13 @@
+{{- /*  raw-waitlist.html - the waitlist, for use inside Markdown.
+
+        On /beta/ this is the form itself. Anywhere else it is the join
+        button, which leads to that form (or to site.Params.waitlist if the
+        list has moved off this site).
+*/ -}}
+{{- if and (eq .Page.RelPermalink ("beta/" | relURL)) (not site.Params.waitlist) }}
+{{ partial "waitlist-form.html" . }}
+{{- else }}
+<div class="btn-row">
+  {{ partial "waitlist-cta.html" . }}
+</div>
+{{- end }}

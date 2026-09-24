@@ -1,0 +1,26 @@
+{{- /*  avatar.html - the animated avatar from the demo.
+
+        Converted from the app's avatar-animated.gif. The GIF is 3.5 MB; this
+        is 152 KB for the same 150 frames, and unlike a GIF a video can be
+        paused, which is what makes the reduced-motion case possible at all.
+
+        It plays twice and stops, which is enough to read as moving without
+        becoming something on the page that never settles. Video has no
+        attribute for a play count, so data-plays carries it and
+        video-behaviour.html does the counting.
+
+        The app's sage card colour is composited behind it at encode time
+        rather than set in CSS, because the source has an alpha channel and
+        MP4 does not. That also means the well keeps its light ground in dark
+        mode - the same as every screenshot on this site, which are all of the
+        light theme.
+*/ -}}
+<div class="avatar-well">
+  <video class="avatar-well__video"
+         poster="{{ "media/avatar-poster.jpg" | relURL }}"
+         width="720" height="900"
+         autoplay muted playsinline data-plays="2"
+         aria-label="A digital avatar of a body, turning slowly">
+    <source src="{{ "media/avatar.mp4" | relURL }}" type="video/mp4">
+  </video>
+</div>

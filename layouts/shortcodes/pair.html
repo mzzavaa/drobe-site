@@ -1,0 +1,23 @@
+{{- /*  pair.html - a situation and what the app does about it, side by side.
+
+        The whole argument of this site sits in the gap between the two
+        columns, so they are set as one object rather than two lists.
+
+        {{< pair problem="What goes wrong" fix="What DROBE does" >}}
+*/ -}}
+<div class="pair">
+  <div class="pair__side">
+    <p class="pair__label pair__label--problem">
+      {{ partial "icon.html" (dict "name" "alert" "class" "icon icon--sm") }}
+      What happens
+    </p>
+    <p>{{ .Get "problem" | markdownify }}</p>
+  </div>
+  <div class="pair__side">
+    <p class="pair__label pair__label--fix">
+      {{ partial "icon.html" (dict "name" "check" "class" "icon icon--sm") }}
+      What DROBE does
+    </p>
+    <p>{{ .Get "fix" | markdownify }}</p>
+  </div>
+</div>

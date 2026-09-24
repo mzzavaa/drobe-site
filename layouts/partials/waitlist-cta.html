@@ -1,0 +1,11 @@
+{{- /*  waitlist-cta.html - the join button.
+
+        Points at site.Params.waitlist when set, otherwise at the form on
+        /beta/ (anchor #join), so every button on the site ends at the same
+        form.
+*/ -}}
+{{- $href := site.Params.waitlist | default (printf "%s#join" (relURL "beta/")) -}}
+<a class="btn btn--primary" href="{{ $href }}">
+  Join the beta waitlist
+  {{ partial "icon.html" (dict "name" "arrow" "class" "icon icon--sm") }}
+</a>

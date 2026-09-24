@@ -1,0 +1,38 @@
+{{- /*  waitlist-form.html - the beta waitlist form.
+
+        A plain HTML form that posts to Kajabi. It works with scripting off,
+        loads nothing from Kajabi, and uses the site's own styles. Kajabi
+        answers with its confirmation page (or the custom thank-you page set
+        on the form) and sends the double opt-in email.
+
+        Field names are Kajabi's and must not change:
+        form_submission[name], form_submission[email].
+*/ -}}
+{{- with site.Params.waitlistAction }}
+<form class="waitlist" id="join" action="{{ . }}" method="post" accept-charset="UTF-8">
+  <div class="waitlist__fields">
+    <label class="waitlist__field">
+      <span class="waitlist__label">First name</span>
+      <input type="text" name="form_submission[name]" autocomplete="given-name" required>
+    </label>
+    <label class="waitlist__field">
+      <span class="waitlist__label">Email</span>
+      <input type="email" name="form_submission[email]" autocomplete="email" required>
+    </label>
+  </div>
+  <button class="btn btn--primary" type="submit">
+    Join the beta waitlist
+    {{ partial "icon.html" (dict "name" "arrow" "class" "icon icon--sm") }}
+  </button>
+  <p class="waitlist__small">
+    You will get one email asking you to confirm. Until you click it, you are
+    not on the list. We use your address for the beta and nothing else, and
+    every email has an unsubscribe link. Details in the
+    <a href="{{ "privacy/" | relURL }}">privacy notice</a>.
+  </p>
+</form>
+{{- else }}
+<div class="note" id="join">
+  <strong>The waitlist is not open yet.</strong> Check back soon.
+</div>
+{{- end }}

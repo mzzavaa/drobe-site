@@ -1,0 +1,44 @@
+{{- /*  case-cards.html - the use-case cards, grouped.
+
+        There are enough use cases now that an undifferentiated grid stops
+        being scannable. Grouping is by when the situation happens, not by
+        which feature it exercises: every day, occasions with rules, travel,
+        and buying or letting go.
+
+        Pages carry `group` and `groupWeight`. A page with no group falls into
+        "Other" and sorts last, which makes a forgotten front-matter field
+        visible rather than silent.
+
+        A partial rather than a shortcode because it is called from a layout as
+        well as from content; shortcodes/cases.html wraps it for Markdown.
+*/ -}}
+{{- $section := site.GetPage "/use-cases" -}}
+{{- with $section -}}
+  {{- $groups := .RegularPages.GroupByParam "group" -}}
+  {{- /* GroupBy sorts by key alphabetically; re-sort by the numeric weight the
+         pages carry so the order is editorial rather than accidental. */ -}}
+  {{- $ordered := slice -}}
+  {{- range $groups -}}
+    {{- $first := index .Pages 0 -}}
+    {{- $ordered = $ordered | append (dict
+          "name"   (.Key | default "Other")
+          "weight" (int ($first.Params.groupWeight | default 999))
+          "pages"  (.Pages.ByWeight)) -}}
+  {{- end -}}
+  {{- range sort $ordered "weight" -}}
+  <div class="group">
+    <h3 class="group__name">{{ .name }}</h3>
+    <div class="grid">
+      {{- range .pages }}
+      <a class="usecase" href="{{ .RelPermalink }}">
+        {{- with .Params.icon }}
+        <span class="usecase__icon">{{ partial "icon.html" (dict "name" .) }}</span>
+        {{- end }}
+        <span class="usecase__title">{{ .Title }}</span>
+        <p class="usecase__body">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+      </a>
+      {{- end }}
+    </div>
+  </div>
+  {{- end -}}
+{{- end -}}
