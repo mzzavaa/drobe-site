@@ -1,4 +1,4 @@
-baseURL = 'https://drobe.app/'
+baseURL = 'https://drobe-fashion.com/'
 locale = 'en-us'
 title = 'DROBE'
 enableEmoji = false
